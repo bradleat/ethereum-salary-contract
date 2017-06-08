@@ -1,0 +1,29 @@
+{
+  "name": "salary-contract",
+  "version": "0.0.1",
+  "description": "An ethereum based salary contract",
+  "main": "index.js",
+  "author": "Bradley Evan Leatherwood",
+  "license": "SEE LICENSE.TXT",
+  "scripts": {
+    "deploy": "node ./build/deploy.js",
+    "build": "tsc && yarn build:contracts",
+    "clean": "rm -rf build",
+    "clean:contracts": "(rm -rf build/contracts || true) && (mkdir build || true) && mkdir build/contracts",
+    "build:contracts": "yarn clean:contracts && solcjs ./contracts/salary.sol --bin --abi -o ./build/ "
+  },
+  "dependencies": {
+    "es6-promisify": "^5.0.0",
+    "ethereumjs-abi": "^0.6.4",
+    "inquirer": "^3.0.6",
+    "solc": "^0.4.11",
+    "web3": "^0.18.4"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^0.0.34",
+    "@types/node": "^7.0.16",
+    "tslint": "^5.2.0",
+    "tslint-eslint-rules": "^4.0.0",
+    "typescript": "^2.3.2"
+  }
+}
