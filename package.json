@@ -1,7 +1,7 @@
 {
-  "name": "salary-contract",
+  "name": "aragon-salary-contract",
   "version": "0.0.1",
-  "description": "An ethereum based salary contract",
+  "description": "An ethereum based salary contract for Aragon.",
   "main": "index.js",
   "author": "Bradley Evan Leatherwood",
   "license": "SEE LICENSE.TXT",
