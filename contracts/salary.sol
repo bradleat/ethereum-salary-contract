@@ -156,19 +156,19 @@ contract SalarySplitAgreement is Owned, Pausable {
         TransferableERCToken antTokenContract = TransferableERCToken(antToken);
         //make sure eth and ant balances are sufficent
         if(antTokenContract.balanceOf(address(this)) >= amountPayableANT && address(this).balance >= amountPayableETH){
-            //transfer ant
-            antTokenContract.transfer(_employee, amountPayableANT);
-            //transfer eth
-            _employee.transfer(amountPayableETH);
 
             agreements[_employee].lastPaid = block.timestamp;
             //record the amount payable in USD in the event log
-            SalaryPayed(_employee, agreement.block, amountPayableUSD);
 
             if(agreement.ended){
                 agreements[_employee].active = false;
                 SalaryFinished(_employee, agreement.block);
             }
+            //transfer ant
+            antTokenContract.transfer(_employee, amountPayableANT);
+            //transfer eth
+            _employee.transfer(amountPayableETH);
+            SalaryPayed(_employee, agreement.block, amountPayableUSD);
             return true;
         }
         else {
