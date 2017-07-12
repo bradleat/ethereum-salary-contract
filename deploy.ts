@@ -44,7 +44,6 @@ function deploy(contract, account, ...params): Promise<any>{
 
 }
 
-
 async function main(){
     const {accountPassword} = await inquirer.prompt([{
         type: 'password',

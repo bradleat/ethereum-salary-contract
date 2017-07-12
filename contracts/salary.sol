@@ -119,9 +119,7 @@ contract SalarySplitAgreement is Owned, Pausable {
             return 0;
         }
         uint payablePeriod = block.timestamp - agreement.lastPaid;
-        uint payableDays = payablePeriod / 1 days; // will truncate
-        uint payableAmount = payableDays * agreement.antDailySalary;
-        return payableAmount;
+        return payablePeriod * agreement.antDailySalary / 1 days;
     }
     function balancePayableETH(address _employee) constant returns (uint) {
         SalaryAgreement agreement = agreements[_employee];
@@ -129,9 +127,7 @@ contract SalarySplitAgreement is Owned, Pausable {
             return 0;
         }
         uint payablePeriod = block.timestamp - agreement.lastPaid;
-        uint payableDays = payablePeriod / 1 days; // will truncate
-        uint payableAmount = payableDays * agreement.etherDailySalary;
-        return payableAmount;
+        return payablePeriod * agreement.etherDailySalary / 1 days;
     }
     function balancePayableUSD(address _employee) constant returns (uint) {
         SalaryAgreement agreement = agreements[_employee];
@@ -139,9 +135,7 @@ contract SalarySplitAgreement is Owned, Pausable {
             return 0;
         }
         uint payablePeriod = block.timestamp - agreement.lastPaid;
-        uint payableDays = payablePeriod / 1 days; // will truncate
-        uint payableAmount = payableDays * agreement.dollarDailySalary;
-        return payableAmount;
+        return payablePeriod * agreement.dollarDailySalary / 1 days;
     }
     function triggerPayment(address _employee) onlyOwner returns (bool) {
         SalaryAgreement agreement = agreements[_employee];
